@@ -1,16 +1,16 @@
 /*
-* This program and the accompanying materials are made available under the terms of the
-* Eclipse Public License v2.0 which accompanies this distribution, and is available at
-* https://www.eclipse.org/legal/epl-v20.html
-*
-* SPDX-License-Identifier: EPL-2.0
-*
-* Copyright Contributors to the Zowe Project.
-*
+* This program and the accompanying materials are made available under the terms of the *
+* Eclipse Public License v2.0 which accompanies this distribution, and is available at *
+* https://www.eclipse.org/legal/epl-v20.html                                      *
+*                                                                                 *
+* SPDX-License-Identifier: EPL-2.0                                                *
+*                                                                                 *
+* Copyright Contributors to the Zowe Project.                                     *
+*                                                                                 *
 */
 
 import { ImperativeExpect } from "@zowe/imperative";
-import { IDB2Response } from "@zowe/db2-for-zowe-cli"
+import { IDB2Response } from "@zowe/db2-for-zowe-cli";
 
 /**
  * This class holds helper functions that are used to collect DB2 table status
@@ -31,8 +31,8 @@ export class Collect {
 
         dbsName === "" ? dbsName = "%" : dbsName = dbsName.replace(/\s/g, "%");
 
-        let SqlCollect = 
-        "SELECT  DBNAME,NAME OBJECT_NAME,'TS' OBJECT_TYPE,'RO' RECOMMENDATION" + 
+        const SqlCollect =
+        "SELECT  DBNAME,NAME OBJECT_NAME,'TS' OBJECT_TYPE,'RO' RECOMMENDATION" +
         "\n         ,'NUMEROUS EXTENTS'  REASON" +
         "\n        ,DATE(CURRENT TIMESTAMP), TIME(CURRENT TIMESTAMP)" +
         "\n    FROM SYSIBM.SYSTABLESPACESTATS" +
@@ -131,7 +131,7 @@ export class Collect {
         "\n        ,'NO IC SINCE LAST LOAD'  AS REASON" +
         "\n,DATE(CURRENT TIMESTAMP), TIME(CURRENT TIMESTAMP)" +
         "\n   FROM SYSIBM.SYSTABLESPACESTATS" +
-        `\n  WHERE DBNAME LIKE ${dbsName} AND LOADRLASTTIME > COPYLASTTIME `+
+        `\n  WHERE DBNAME LIKE ${dbsName} AND LOADRLASTTIME > COPYLASTTIME ` +
         "\n   UNION" +
         "\nSELECT  DBNAME,NAME OBJECT_NAME,'TS' OBJECT_TYPE,'IC' RECOMMENDATION" +
         "\n        ,'NO IC IN PAST 7 DAYS'  AS REASON" +
