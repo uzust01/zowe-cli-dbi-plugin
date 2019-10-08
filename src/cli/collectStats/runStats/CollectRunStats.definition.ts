@@ -9,3 +9,30 @@
 *                                                                                 *
 */
 
+import { ICommandDefinition } from "@zowe/imperative";
+import { ErrorHandlerDefinition } from "../error_handler/ErrorHandler.definition";
+/**
+ * [action] command defintion for the [action] two group. The [action] is of imperative command definition type
+ * "group", which means it must have children.
+ *
+ * In this case, the action is "all" - which will cause handlers to fail in a variety of ways.
+ *
+ * Property Summary:
+ * =================
+ * "name" of the [action]. Always a verb (e.g. "imagecopy")
+ * "summary" will display when issuing the help for the [group] (e.g. zowe dbi --help)
+ * "type" is "group" which means it has children (the [objects])
+ * "children" is the set of child definitions (the [objects])
+ */
+const icDefinition: ICommandDefinition = {
+    name: "rs",
+    summary: "Diagnose all objects of the database for \"Runstats [action]\" [objects]",
+    description: "[actions] in Zowe CLI are groups of commands. [actions] are always verbs. " +
+        "For example, for command \"zowe dbi ds rs\", the [action] is \"rs\".\n\n" +
+        "For this action (\"rs\") diagonsis of all or selected db2 objects in a database for runstats take place.",
+    type: "group",
+    children: [ErrorHandlerDefinition]
+};
+
+export = icDefinition;
+
